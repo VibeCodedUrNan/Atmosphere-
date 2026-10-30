@@ -1,3 +1,7 @@
+<img width="1918" height="1079" alt="Screenshot 2026-10-30 221502" src="https://github.com/user-attachments/assets/274a9436-204f-4854-aca2-099441f93bd0" />
+<img width="1917" height="1079" alt="Screenshot 2026-10-30 221349" src="https://github.com/user-attachments/assets/36f65d5e-3095-4c45-bb80-4b596e81ba06" />
+
+
 # Atmosphere 
 
 A customizable desktop music visualizer. It listens to whatever is playing on your computer (Spotify,
