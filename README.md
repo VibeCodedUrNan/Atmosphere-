@@ -1,4 +1,4 @@
-# Music Visualizer
+# Atmosphere 
 
 A customizable desktop music visualizer. It listens to whatever is playing on your computer (Spotify,
 YouTube in a browser, Apple Music, VLC...) and shows the song, cover and playback controls.
