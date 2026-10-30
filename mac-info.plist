@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Added to the Mac app's Info.plist: macOS shows these when it asks for permission. -->
+<plist version="1.0">
+<dict>
+  <key>NSMicrophoneUsageDescription</key>
+  <string>Music Visualizer listens to the BlackHole audio device so it can react to your music.</string>
+  <key>NSAppleEventsUsageDescription</key>
+  <string>Music Visualizer asks Spotify and Apple Music what's playing and controls playback.</string>
+</dict>
+</plist>

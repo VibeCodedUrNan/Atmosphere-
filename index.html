@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Music Visualizer</title>
+<!-- Only the app's own files run; covers and the wallpaper arrive as data: images; nothing loads from the internet. -->
+<meta http-equiv="Content-Security-Policy"
+  content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="cv"></canvas>
+<div id="drag">⠿ drag here to move</div>
+
+<div id="status"></div>
+<div id="idle">Waiting for music…</div>
+
+<div id="topbar">
+  <button id="btnAudio" title="Change audio source">Audio</button>
+  <button id="btnFs" title="Fullscreen (F)">⛶</button>
+  <button id="btnPanel" title="Settings (H)">⚙</button>
+  <button id="btnMini" title="Mini player (N)">⧉</button>
+  <button id="btnMin" class="winctl" title="Minimize">–</button>
+  <button id="btnQuit" class="winctl" title="Close">✕</button>
+</div>
+
+<div id="track" class="hidden">
+  <img id="art" alt="">
+  <div class="meta">
+    <div class="title" id="tTitle"></div>
+    <div class="artist" id="tArtist"></div>
+    <div class="src" id="tSrc"></div>
+    <div class="bar" id="tBar"><div id="tProg"></div></div>
+    <div class="ctrls">
+      <button id="bPrev" title="Previous">⏮</button>
+      <button id="bPlay" title="Play/Pause (Space)">⏯</button>
+      <button id="bNext" title="Next">⏭</button>
+    </div>
+  </div>
+</div>
+
+<aside id="panel" class="hidden">
+  <h2>Settings <button id="btnClose">✕</button></h2>
+
+  <h3>Visual</h3>
+  <div class="row"><label for="mode">Mode</label>
+    <select id="mode" data-key="mode">
+      <option value="bars">Bars</option><option value="radial">Radial</option>
+      <option value="wave">Waveform</option><option value="particles">Particles</option><option value="2016">2016</option>
+    </select></div>
+  <div class="row"><label for="bars">Bar count</label><input type="range" id="bars" data-key="bars" min="16" max="256" step="8"></div>
+  <div class="row"><label for="mirror">Mirror</label><input type="checkbox" id="mirror" data-key="mirror"></div>
+  <div class="row"><label for="spin">Spin (radial)</label><input type="range" id="spin" data-key="spin" min="0" max="2" step="0.05"></div>
+  <div class="row"><label for="glow">Glow</label><input type="range" id="glow" data-key="glow" min="0" max="40" step="1"></div>
+  <div class="row"><label for="trails">Trails</label><input type="range" id="trails" data-key="trails" min="0" max="0.85" step="0.05"></div>
+  <div class="row"><label for="bg">Background</label>
+    <select id="bg" data-key="bg"><option value="black">Black</option><option value="color">Colour</option>
+      <option value="album">Blurred album art</option><option value="image">Your image</option>
+      <option value="transparent">Transparent (see desktop)</option></select></div>
+  <div id="rowBgColor">
+    <div class="swatches" id="bgSwatches"></div>
+    <div class="row"><label for="bgColor">Any colour</label><input type="color" id="bgColor" data-key="bgColor"></div>
+  </div>
+  <div id="rowBgImage">
+    <div class="row"><label>Image</label><button id="btnBgImage">Choose image…</button></div>
+    <input type="file" id="bgFile" accept="image/jpeg,image/png,.jpg,.jpeg,.png" class="hidden">
+    <div class="row"><label for="bgBright">Image brightness</label><input type="range" id="bgBright" data-key="bgBright" min="0.1" max="1" step="0.05"></div>
+  </div>
+
+  <h3>Colour</h3>
+  <div class="row"><label for="colorSource">Source</label>
+    <select id="colorSource" data-key="colorSource"><option value="album">From album art</option><option value="custom">Custom</option></select></div>
+  <div class="row"><label>Custom colours</label>
+    <span><input type="color" id="c1" data-key="c1"><input type="color" id="c2" data-key="c2"><input type="color" id="c3" data-key="c3"></span></div>
+
+  <h3>Audio</h3>
+  <div class="row"><label for="sensitivity">Sensitivity</label><input type="range" id="sensitivity" data-key="sensitivity" min="0.3" max="3" step="0.05"></div>
+  <div class="row"><label for="smoothing">Smoothing</label><input type="range" id="smoothing" data-key="smoothing" min="0" max="0.95" step="0.05"></div>
+
+  <h3>Display</h3>
+  <div class="row"><label for="showTrack">Show now playing</label><input type="checkbox" id="showTrack" data-key="showTrack"></div>
+  <div class="row"><button id="btnReset">Reset settings</button></div>
+  <p class="note">Keys: H settings · F fullscreen · Space play/pause · ←/→ previous/next · M next mode · N mini player</p>
+</aside>
+
+<div id="start">
+  <div class="card">
+    <h1>Pick an audio source</h1>
+    <p class="note">Choose what the visualizer listens to.</p>
+    <div class="btns">
+      <button class="primary" id="srcSystem">System audio (recommended)</button>
+      <button id="srcMic">Microphone</button>
+      <button id="srcNone">No audio (demo motion)</button>
+    </div>
+  </div>
+</div>
+
+<script src="renderer.js"></script>
+</body>
+</html>

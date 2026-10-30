@@ -1,0 +1,24 @@
+{
+  "name": "music-visualizer",
+  "productName": "Music Visualizer",
+  "version": "1.2.0",
+  "description": "Customizable desktop music visualizer that reacts to whatever is playing on your computer",
+  "license": "MIT",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "package": "electron-packager . \"Music Visualizer\" --platform=win32 --arch=x64 --out=dist --overwrite --asar.unpack=**/media.ps1 --ignore=\"^/dist\" --ignore=media-mac\\.js --ignore=media-linux\\.js --ignore=node_modules/@jellybrick --ignore=mac-info\\.plist --ignore=build-mac\\.sh --ignore=MAC-SETUP\\.md",
+    "package:linux": "electron-packager . \"Music Visualizer\" --platform=linux --arch=x64 --out=dist --overwrite --ignore=\"^/dist\" --ignore=media\\.ps1 --ignore=media-win\\.js --ignore=media-mac\\.js --ignore=mac-info\\.plist --ignore=build-mac\\.sh --ignore=MAC-SETUP\\.md",
+    "package:mac": "sh build-mac.sh"
+  },
+  "devDependencies": {
+    "@electron/packager": "^20.3.0",
+    "electron": "^45.2.0"
+  },
+  "allowScripts": {
+    "electron@45.2.0": true
+  },
+  "dependencies": {
+    "@jellybrick/dbus-next": "^0.11.4"
+  }
+}
